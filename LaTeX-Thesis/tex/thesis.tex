@@ -1,0 +1,180 @@
+% ----------------------------------------------------------------------
+%                   LATEX TEMPLATE FOR THESIS
+% ----------------------------------------------------------------------
+\documentclass[a4paper, 12pt, twoside, openright,fleqn]{book}
+\usepackage[top=4.5cm,bottom=5.0cm,left=4.3cm,right=3.5cm]{geometry}
+\usepackage[dvips]{graphicx}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{makeidx}
+% \usepackage[subsectionbib]{bibunits}
+\usepackage{bibunits}
+\usepackage{url}
+\usepackage{ifthen}
+\usepackage{color}
+\usepackage{cite}
+\newcommand{\ucite}[1]{\textsuperscript{\cite{#1}}}
+\usepackage{multirow}
+
+\usepackage{hyperref}   % url link
+
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{subfig}
+%\usepackage[a-2u]{pdfx}
+
+\makeatletter
+\newcommand{\figcaption}[1]{\def\@captype{figure}\caption{#1}}
+\newcommand{\tblcaption}[1]{\def\@captype{table}\caption{#1}}
+\newcommand{\argmin}{\mathop{\mathrm{arg~min}}\limits}
+\makeatother
+
+\usepackage{algorithmicx}     % for writing algorithms
+\usepackage[ruled]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{algpascal}
+\usepackage{algc}
+\alglanguage{pseudocode}
+
+% Roman Letter
+\makeatletter
+\newcommand{\rmnum}[1]{\romannumeral #1}
+\newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+
+\usepackage{multirow}    % multirow in tables
+%\usepackage{pgfplots}   % pgfplot
+%\usepackage{tikz}       % tikz for plotting
+
+
+%----------------------------------------------------------------------
+
+
+\begin{document}
+%----------------------------------------------------------------------
+%                 TITLE PAGE: title, name, affiliation, degree, date..
+%----------------------------------------------------------------------
+% Below is to generate the title page with crest and author name
+\pagestyle{empty}
+\input{./01.Title/Title.tex}	% Cover page
+\cleardoublepage				% Add a white page
+
+
+%----------------------------------------------------------------------
+%                ABSTRACT
+%----------------------------------------------------------------------
+\clearpage{\pagestyle{plain}\cleardoublepage}		% Begin from odd page
+\fontsize{11pt}{17 pt}\selectfont					% Font and line space
+\frontmatter					% Roman character for index footnote
+\input{./02.Abstract/Abstract.tex}
+\clearpage{\pagestyle{empty}\cleardoublepage}	% Begin from odd page
+
+
+%----------------------------------------------------------------------
+%                 INDEX, FIGURE, TABLE
+%----------------------------------------------------------------------
+\fontsize{11pt}{17 pt}\selectfont	% Font and line space
+\pagestyle{plain}
+% CONTENT
+\clearpage{\pagestyle{empty}\cleardoublepage}	% Begin from odd page
+\addcontentsline{toc}{chapter}{Contents}			% Show in contents
+\tableofcontents
+% FIGURE
+\clearpage{\pagestyle{empty}\cleardoublepage}	% Begin from odd page
+\addcontentsline{toc}{chapter}{List of Figures}		% Show in contents
+\listoffigures
+% TABLE
+\clearpage{\pagestyle{empty}\cleardoublepage}	% Begin from odd page
+\addcontentsline{toc}{chapter}{List of Tables}		% Show in contents
+\listoftables
+
+
+%----------------------------------------------------------------------
+%                CHAPTERS
+%----------------------------------------------------------------------
+\clearpage{\pagestyle{empty}\cleardoublepage}	% Begin from odd page
+\mainmatter									% Arabic numerals for index footnote
+% Set up the style of page
+\pagestyle{fancy}
+\fancypagestyle{plain}{              			% For first page of each chapter
+\fancyhead{}							% Clear all fields
+\fancyhead[RE]{\nouppercase \rightmark}	% Display the chapter name in even page
+\fancyhead[LO]{\nouppercase \leftmark}	% Display the section name in odd page
+\fancyfoot[C]{--\thepage--}				% Page number
+}
+\renewcommand{\chaptermark}[1]{
+\markboth{{
+\chaptername\ \thechapter.
+\ #1}}{}}
+\fancyhead{}							% Clear all fields
+\fancyhead[RE]{\nouppercase \rightmark}	% Display the chapter name in even page
+\fancyhead[LO]{\nouppercase \leftmark}	% Display the section name in odd page
+\fancyfoot[C]{--\thepage--}				% Page number
+\fontsize{12 pt}{17 pt}\selectfont		% Font and line space
+\setlength{\parskip}{0pt}
+\raggedbottom
+%******************************************************
+\input{./03.Introduction/Introduction.tex}
+\input{./04.Theory/Theory.tex}
+\input{./05.Simulation/Simulation.tex}
+\input{./06.Improvement/Improvement.tex}
+\input{./07.Conlusions/Conlusions.tex}
+%******************************************************
+
+
+%----------------------------------------------------------------------
+%                ACKNOWLEDGEMENTS (No for review)
+%----------------------------------------------------------------------
+\clearpage{\pagestyle{empty}\cleardoublepage}	% Begin from odd page
+\addcontentsline{toc}{chapter}{Acknowledgments}	% Show in contents
+\fancyhead{}									% Remove the chapter name
+\renewcommand{\headrulewidth}{0 pt}			    % Remove the line
+\fancyfoot[C]{--\thepage--}						% Page number
+\fontsize{11pt}{17 pt}\selectfont				% Font and line space
+\input{./08.Acknowledgments/Acknowledgments.tex}
+
+
+%----------------------------------------------------------------------
+%                REFERENCES
+%----------------------------------------------------------------------
+\clearpage{\pagestyle{empty}\cleardoublepage}	% Begin from odd page
+\addcontentsline{toc}{chapter}{References}		% Show in contents
+\fancyhead{}									% Remove the chapter name
+\renewcommand{\headrulewidth}{0 pt}			    % Remove the line
+\fancyfoot[C]{--\thepage--}						% Page number
+\fontsize{11pt}{17 pt}\selectfont				% Font and line space
+
+\bibliographystyle{unsrt}
+\bibliographystyle{IEEEtran}
+\bibliographystyle{ieicetr}
+\bibliography{refs}
+
+
+----------------------------------------------------------------------
+                APPENDIX
+----------------------------------------------------------------------
+\clearpage{\pagestyle{empty}\cleardoublepage}	% Begin from odd page
+\addcontentsline{toc}{chapter}{Appendix}		% Show in contents
+\fancyhead{}									% Remove the chapter name
+\renewcommand{\headrulewidth}{0 pt}			% Remove the line
+\fancyfoot[C]{--\thepage--}					% Page number
+\fontsize{11pt}{17 pt}\selectfont				% Font and line space
+\input{./09.Appendix/Appendix.tex}
+
+
+
+----------------------------------------------------------------------
+                PUBLICATIONS
+----------------------------------------------------------------------
+\clearpage{\pagestyle{empty}\cleardoublepage}	% Begin from odd page
+\addcontentsline{toc}{chapter}{Publications}	% Show in contents
+\fancyhead{}							        % Remove the chapter name
+\renewcommand{\headrulewidth}{0 pt}	        % Remove the line
+\fancyfoot[C]{--\thepage--}				    % Page number
+\fontsize{11pt}{17 pt}\selectfont			    % Font and line space
+\input{./10.Publications/Publications.tex}
+----------------------------------------------------------------------
+
+
+\end{document}
